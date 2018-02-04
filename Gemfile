@@ -64,4 +64,5 @@ end
 
 gem 'activerecord-import'
 gem 'dotenv-rails'
+gem 'twitter'
 gem 'whenever', require: false
