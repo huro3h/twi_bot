@@ -72,5 +72,5 @@ Temporary Items
 .apdisk
 
 # --additional--
-database.yml
+# database.yml
 spec/examples.txt

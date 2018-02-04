@@ -1,0 +1,24 @@
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  socket: /tmp/mysql.sock
+  timeout: 5000
+  host: localhost
+
+development:
+  <<: *default
+  database: <%= ENV['TWI_BOT_DB_NAME_DEV'] %>
+  username: <%= ENV['TWI_BOT_USER_NAME_DEV'] %>
+
+test:
+  <<: *default
+  database: <%= ENV['TWI_BOT_DB_NAME_TEST'] %>
+  username: <%= ENV['TWI_BOT_USER_NAME_TEST'] %>
+
+production:
+  <<: *default
+  database: <%= ENV['TWI_BOT_DB_NAME'] %>
+  username: <%= ENV['TWI_BOT_USER_NAME'] %>
+  password: <%= ENV['TWI_BOT_DB_PASSWORD'] %>
