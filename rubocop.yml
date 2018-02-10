@@ -5,6 +5,10 @@ Rails:
 Lambda:
   Enabled: false
 
+# 1行あたりの文字数
+LineLength:
+  Max: 120
+
 # モジュール名::クラス名の定義を許可
 ClassAndModuleChildren:
   Enabled: false
@@ -17,15 +21,8 @@ AccessorMethodName:
 AndOr:
   Enabled: false
 
-# Line is too long.
-Metrics/LineLength:
-  Enabled: false
-
 ClassAndModuleChildren:
   EnforcedStyle: compact
-
-Metrics/AbcSize:
-  Max: 30
 
 # 日本語コメント許可
 Style/AsciiComments:
@@ -56,6 +53,9 @@ Style/PredicateName:
 # ローカル変数とメソッド呼び出しの区別をつける為
 Style/RedundantSelf:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
 
 # if分岐。デフォルトは7
 Metrics/PerceivedComplexity:
