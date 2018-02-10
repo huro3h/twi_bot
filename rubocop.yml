@@ -1,9 +1,6 @@
 Rails:
   Enabled: true
 
-AsciiComments:
-  Enabled: false
-
 # 複数行での「lambda」で「->」による省略記法を許可
 Lambda:
   Enabled: false
@@ -16,10 +13,6 @@ ClassAndModuleChildren:
 AccessorMethodName:
   Enabled: false
 
-# クラスにコメントを残さない
-Documentation:
-  Enabled: false
-
 # 「and」「or」の使用を許可
 AndOr:
   Enabled: false
@@ -28,13 +21,48 @@ AndOr:
 Metrics/LineLength:
   Enabled: false
 
-StringLiterals:
-  Enabled: false
-
 ClassAndModuleChildren:
   EnforcedStyle: compact
 
 Metrics/AbcSize:
-  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
-  # a Float.
   Max: 30
+
+# 日本語コメント許可
+Style/AsciiComments:
+  Enabled: false
+
+# ドキュメントの無いpublic classを許可
+Style/Documentation:
+  Enabled: false
+
+# 3行程度のブロックを許容
+Style/GuardClause:
+  MinBodyLength: 5
+
+# 1_000_000 と区切り文字が2個以上必要になる場合のみ _区切りで警告
+# 4桁で警告出すとポート番号指定の際に都合悪い
+Style/NumericLiterals:
+  MinDigits: 7
+
+# is_ have_ から始まるメソッドの許可
+Style/PredicateName:
+  NamePrefixBlacklist:
+    - "is_"
+    - "have_"
+  NamePrefix:
+    - "is_"
+    - "have_"
+
+# ローカル変数とメソッド呼び出しの区別をつける為
+Style/RedundantSelf:
+  Enabled: false
+
+# if分岐。デフォルトは7
+Metrics/PerceivedComplexity:
+  Max: 8
+
+# メソッド20行まで migrationファイルは除外
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - "db/migrate/*.rb"
