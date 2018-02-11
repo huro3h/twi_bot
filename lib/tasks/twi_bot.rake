@@ -2,11 +2,11 @@ require 'twitter'
 
 namespace :twi_bot do
   # bundle exec rake twi_bot:random_tweet
-  desc 'random tweet'
+  desc 'random_tweet'
   task random_tweet: :environment do
     keys = twitter_keys
-    random_number = rand(Tweet.first.id..Tweet.last.id)
-    tweet = Tweet.where(id: random_number).first
+    tweet_id = rand(Tweet.first.id..Tweet.last.id)
+    tweet = Tweet.where(id: tweet_id).first
     if tweet.present
       puts tweet.content
       update(keys, tweet.content)
@@ -16,11 +16,18 @@ namespace :twi_bot do
   end
 
   # bundle exec rake twi_bot:tweet
-  desc 'first tweet test'
-  task tweet: :environment do
+  desc 'first_tweet_test'
+  task test_tweet: :environment do
     keys = twitter_keys
-    tweet = 'First_tweet!'
+    tweet = "First_tweet!\r改行"
     update(keys, tweet)
+  end
+
+  desc 'tweet_delete'
+  task delete: :environment do
+    keys = twitter_keys
+    delete_id = ""
+    keys.destroy_status(delete_id)
   end
 
   # bundle exec rake twi_bot:read
