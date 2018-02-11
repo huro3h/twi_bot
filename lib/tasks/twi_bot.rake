@@ -4,12 +4,12 @@ namespace :twi_bot do
   # bundle exec rake twi_bot:random_tweet
   desc 'random_tweet'
   task random_tweet: :environment do
-    keys = twitter_keys
+    client = twitter_client
     tweet_id = rand(Tweet.first.id..Tweet.last.id)
     tweet = Tweet.where(id: tweet_id).first
     if tweet.present
       puts tweet.content
-      update(keys, tweet.content)
+      update(client, tweet.content)
     else
       Rake::Task.new('twi_bot:random_tweet', Rake.application).invoke
     end
@@ -18,16 +18,16 @@ namespace :twi_bot do
   # bundle exec rake twi_bot:tweet
   desc 'first_tweet_test'
   task test_tweet: :environment do
-    keys = twitter_keys
+    client = twitter_client
     tweet = "First_tweet!\r改行"
-    update(keys, tweet)
+    update(client, tweet)
   end
 
   desc 'tweet_delete'
   task delete: :environment do
-    keys = twitter_keys
-    delete_id = ""
-    keys.destroy_status(delete_id)
+    client = twitter_client
+    delete_id = "962302419420905472"
+    client.destroy_status(delete_id)
   end
 
   # bundle exec rake twi_bot:read
@@ -50,19 +50,19 @@ namespace :twi_bot do
   end
 end
 
-def twitter_keys
-  keys = Twitter::REST::Client.new do |config|
-    config.consumer_key = ENV['CONSUMER_KEY']
-    config.consumer_secret = ENV['CONSUMER_SECRET']
-    config.access_token = ENV['ACCESS_TOKEN']
+def twitter_client
+  client = Twitter::REST::Client.new do |config|
+    config.consumer_key        = ENV['CONSUMER_KEY']
+    config.consumer_secret     = ENV['CONSUMER_SECRET']
+    config.access_token        = ENV['ACCESS_TOKEN']
     config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
   end
-  keys
+  client
 end
 
-def update(keys, tweet)
+def update(client, tweet)
   tweet = (tweet.length > 140) ? tweet[0..139].to_s : tweet
-  keys.update(tweet.chomp)
+  client.update(tweet.chomp)
 rescue Exception => e
   Rails.logger.error "<<twitter.rake::tweet.update ERROR : #{e.message}>>"
 end
