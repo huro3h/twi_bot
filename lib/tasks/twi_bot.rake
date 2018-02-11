@@ -1,8 +1,22 @@
 require 'twitter'
 
 namespace :twi_bot do
+  # bundle exec rake twi_bot:random_tweet
+  desc 'random tweet'
+  task random_tweet: :environment do
+    keys = twitter_keys
+    random_number = rand(Tweet.first.id..Tweet.last.id)
+    tweet = Tweet.where(id: random_number).first
+    if tweet.present
+      puts tweet.content
+      update(keys, tweet.content)
+    else
+      Rake::Task.new('twi_bot:random_tweet', Rake.application).invoke
+    end
+  end
+
   # bundle exec rake twi_bot:tweet
-  desc 'first tweet'
+  desc 'first tweet test'
   task tweet: :environment do
     keys = twitter_keys
     tweet = 'First_tweet!'
