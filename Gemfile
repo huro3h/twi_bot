@@ -50,6 +50,10 @@ end
 gem 'tzinfo-data'
 
 # --additionnal gems--
+group :development do
+  gem 'capistrano-rails', '~> 1.3', require: false
+end
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
