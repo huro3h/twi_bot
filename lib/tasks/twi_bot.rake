@@ -26,7 +26,7 @@ namespace :twi_bot do
   desc 'tweet_delete'
   task delete: :environment do
     client = twitter_client
-    delete_id = "962302419420905472"
+    delete_id = ""
     client.destroy_status(delete_id)
   end
 
@@ -46,6 +46,28 @@ namespace :twi_bot do
         end
         sleep 0.5
       end
+    end
+  end
+
+  # bundle exec rake twi_bot:read
+  desc 'read_old_post_id'
+  task read_post_id: :environment do
+    miss_ids = []
+    File.open('./public/tweet_ids.txt') do |file|
+      file.each_line do |old_id|
+        post = Post.new
+        post.publish_id = old_id.strip!
+        post.save
+        if post.save
+          puts "過去のツイートID #{old_id} を保存しました"
+        else
+          puts 'ツイートの保存に失敗しました'
+          puts "失敗→ #{old_id}"
+          miss_ids << old_id
+        end
+      end
+      puts "失敗件数 #{miss_ids.count}"
+      puts miss_ids if miss_ids.present?
     end
   end
 end
