@@ -15,19 +15,33 @@ namespace :twi_bot do
     end
   end
 
-  # bundle exec rake twi_bot:tweet
-  desc 'first_tweet_test'
-  task test_tweet: :environment do
+  # bundle exec rake twi_bot:tweet_test
+  desc 'tweet_test'
+  task tweet_test: :environment do
     client = twitter_client
-    tweet = "First_tweet!\r改行"
+    tweet = "tweet_test!\rand_new_line_test.."
     update(client, tweet)
   end
 
-  desc 'tweet_delete'
-  task delete: :environment do
+  # bundle exec rake twi_bot:delete_test
+  desc 'tweet_delete_test'
+  task delete_test: :environment do
     client = twitter_client
     delete_id = ""
     client.destroy_status(delete_id)
+  end
+
+  # bundle exec rake twi_bot:delete_post
+  desc 'tweet_delete_with_Post_model'
+  task delete_post: :environment do
+    post = Post.new
+    past_tweet = Post.where(deleted_at: nil).last
+    if past_tweet.present?
+      post.delete_post(past_tweet)
+      post.is_deleted = true
+      post.deleted_at = Time.zone.now
+      post.save
+    end
   end
 
   # bundle exec rake twi_bot:read
