@@ -51,7 +51,10 @@ gem 'tzinfo-data'
 
 # --additionnal gems--
 group :development do
-  gem 'capistrano-rails', '~> 1.3', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano3-puma', require: false
 end
 
 group :development, :test do
