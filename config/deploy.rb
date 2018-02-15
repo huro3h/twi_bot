@@ -44,3 +44,5 @@ set :rbenv_type, :system
 set :rbenv_path, '/usr/local/rbenv'
 set :rbenv_ruby, '2.5.0'
 
+# 'whenever/capistrano' setting
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }

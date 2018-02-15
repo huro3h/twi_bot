@@ -34,13 +34,9 @@ namespace :twi_bot do
   # bundle exec rake twi_bot:delete_post
   desc 'tweet_delete_with_Post_model'
   task delete_post: :environment do
-    post = Post.new
-    past_tweet = Post.where(deleted_at: nil).last
-    if past_tweet.present?
-      post.delete_post(past_tweet)
-      post.is_deleted = true
-      post.deleted_at = Time.zone.now
-      post.save
+    if Post.where(is_deleted: false).size > 100
+      post = Post.new
+      post.delete_oldest_post
     end
   end
 
