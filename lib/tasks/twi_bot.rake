@@ -35,7 +35,12 @@ namespace :twi_bot do
   desc 'tweet_delete_with_Post_model'
   task delete_post: :environment do
     if Post.where(is_deleted: false).size > 100
+      random = rand(18..24)
       post = Post.new
+      post.delete_oldest_post
+      sleep(random)
+      post.delete_oldest_post
+      sleep(random)
       post.delete_oldest_post
     end
   end
