@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   def index
+    @posts = Post.where(is_deleted: false).order(id: :desc)
+    @posts = Post.page(params[:page]).per(50)
   end
 
   def new
