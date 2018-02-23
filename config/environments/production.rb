@@ -30,6 +30,9 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
+  # アセットへのアクセスログを非表示
+  config.assets.quiet = true
+
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -75,6 +78,9 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # デイリーでログをローテーションする
+  config.logger = Logger.new('log/production.log', 'daily')
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
