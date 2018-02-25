@@ -45,6 +45,21 @@ namespace :twi_bot do
     end
   end
 
+  # bundle exec rake twi_bot:delete_latest_post
+  desc 'tweet_delete_with_Post_model(latest)'
+  task delete_latest_post: :environment do
+    if Post.where(is_deleted: false).size > 100
+      random = rand(18..24)
+      post = Post.new
+      post.delete_latest_post
+      sleep(random)
+      post.delete_latest_post
+      sleep(random)
+      post.delete_latest_post
+    end
+  end
+
+
   # bundle exec rake twi_bot:read
   desc 'read_n_save'
   task read: :environment do

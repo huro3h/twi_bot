@@ -20,7 +20,11 @@ set :environment, :production
 #   runner "AnotherModel.prune_old_records"
 # end
 
+# every 1.minute do
+#   rake 'tweet_delete_with_Post_model'
+# end
+
 every 1.minute do
-  rake 'twi_bot:delete_post'
+  rake 'tweet_delete_with_Post_model'
 end
 # Learn more: http://github.com/javan/whenever
