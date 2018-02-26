@@ -25,6 +25,6 @@ set :environment, :production
 # end
 
 every 1.minute do
-  rake 'tweet_delete_with_Post_model'
+  rake 'twi_bot:delete_latest_post'
 end
 # Learn more: http://github.com/javan/whenever
