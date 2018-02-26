@@ -24,37 +24,27 @@ namespace :twi_bot do
   end
 
   # bundle exec rake twi_bot:delete_test
-  desc 'tweet_delete_test'
-  task delete_test: :environment do
-    client = twitter_client
-    delete_id = ""
-    client.destroy_status(delete_id)
-  end
+  # desc 'tweet_delete_test'
+  # task delete_test: :environment do
+  #   client = twitter_client
+  #   delete_id = ""
+  #   client.destroy_status(delete_id)
+  # end
 
   # bundle exec rake twi_bot:delete_post
   desc 'tweet_delete_with_Post_model'
   task delete_post: :environment do
-    if Post.where(is_deleted: false).size > 100
-      random = rand(18..24)
+    if Post.where(is_deleted: false).size > 25
       post = Post.new
-      post.delete_oldest_post
-      sleep(random)
-      post.delete_oldest_post
-      sleep(random)
       post.delete_oldest_post
     end
   end
 
   # bundle exec rake twi_bot:delete_latest_post
-  desc 'tweet_delete_with_Post_model(latest)'
+  desc 'tweet_delete_with_Post_model_latest'
   task delete_latest_post: :environment do
-    if Post.where(is_deleted: false).size > 100
-      random = rand(18..24)
+    if Post.where(is_deleted: false).size > 25
       post = Post.new
-      post.delete_latest_post
-      sleep(random)
-      post.delete_latest_post
-      sleep(random)
       post.delete_latest_post
     end
   end
