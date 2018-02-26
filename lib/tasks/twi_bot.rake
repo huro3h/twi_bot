@@ -6,10 +6,22 @@ namespace :twi_bot do
   task random_tweet: :environment do
     client = twitter_client
     tweet_id = rand(Tweet.first.id..Tweet.last.id)
+    sleep_time = rand(15..45)
     tweet = Tweet.where(id: tweet_id).first
-    if tweet.present
+    if tweet.present?
+      p "Sleep_time:#{sleep_time} Tweet_ID:#{tweet.id}"
+      # sleep(sleep_time)
       puts tweet.content
       update(client, tweet.content)
+
+      # TODO: あとでメソッド切る
+      # 自動で消す為にtweet内容を記録
+      latest_tweet = client.user_timeline(ENV['MY_TWI_BOT']).first.to_h
+      Post.create(
+        publish_id: latest_tweet[:id_str],
+        content: latest_tweet[:text],
+        created_at: Time.zone.now
+      )
     else
       Rake::Task.new('twi_bot:random_tweet', Rake.application).invoke
     end
