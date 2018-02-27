@@ -1,5 +1,20 @@
 <div>
-  <% @posts.each do |post| %>
-    <span><%= post.id %> - <%= post.publish_id %></span><br>
-  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>publish_id</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <th scope="row"><%= post.id %></th>
+          <td><%= post.publish_id %></td>
+          <td><%= truncate(post.content, length: 24) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
