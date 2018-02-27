@@ -6,11 +6,11 @@ namespace :twi_bot do
   task random_tweet: :environment do
     client = twitter_client
     tweet_id = rand(Tweet.first.id..Tweet.last.id)
-    sleep_time = rand(15..45)
+    sleep_time = rand(65..240)
     tweet = Tweet.where(id: tweet_id).first
     if tweet.present?
       p "Sleep_time:#{sleep_time} Tweet_ID:#{tweet.id}"
-      # sleep(sleep_time)
+      sleep(sleep_time)
       puts tweet.content
       update(client, tweet.content)
 
