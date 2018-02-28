@@ -1,8 +1,17 @@
 version: 2
 jobs:
   build:
+    parallelism: 1
+    working_directory: ~/myProjects/twi_bot
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/ruby:2.4.3
+        environment:
+          RAILS_ENV: test
+      - image: circleci/mysql:5.7.21
+        environment:
+          USER: twi_bot
+          DB: twi_bot_test
+          PASSWORD: ""
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: echo "move to ver2.0"
