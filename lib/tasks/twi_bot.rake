@@ -9,9 +9,8 @@ namespace :twi_bot do
     sleep_time = rand(65..240)
     tweet = Tweet.where(id: tweet_id).first
     if tweet.present?
-      p "Sleep_time:#{sleep_time} Tweet_ID:#{tweet.id}"
       sleep(sleep_time)
-      puts tweet.content
+      p "[tweet_log] [#{Time.zone.now}] Sleep_time:[#{sleep_time}] content:[#{truncate(tweet.content)}]"
       update(client, tweet.content)
 
       # TODO: あとでメソッド切る
