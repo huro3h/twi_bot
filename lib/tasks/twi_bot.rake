@@ -10,7 +10,7 @@ namespace :twi_bot do
     tweet = Tweet.where(id: tweet_id).first
     if tweet.present?
       sleep(sleep_time)
-      p "[tweet_log] [#{Time.zone.now}] Sleep_time:[#{sleep_time}] content:[#{truncate(tweet.content)}]"
+      p "[tweet_log] [#{Time.zone.now}] Sleep_time:[#{sleep_time}] content:[#{tweet.content.truncate(25)}]"
       update(client, tweet.content)
 
       # TODO: あとでメソッド切る
@@ -59,7 +59,6 @@ namespace :twi_bot do
       post.delete_latest_post
     end
   end
-
 
   # bundle exec rake twi_bot:read
   desc 'read_n_save'
