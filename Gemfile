@@ -57,11 +57,6 @@ group :development do
   gem 'capistrano3-puma', require: false
 end
 
-group :development, :test do
-  gem 'pry-byebug'
-  gem 'pry-rails'
-end
-
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
@@ -71,6 +66,8 @@ end
 
 gem 'activerecord-import'
 gem 'dotenv-rails'
+gem 'kaminari'
+gem 'pry-byebug'
+gem 'pry-rails'
 gem 'twitter'
 gem 'whenever', require: false
-gem 'kaminari'
