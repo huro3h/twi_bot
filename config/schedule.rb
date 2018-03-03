@@ -29,7 +29,7 @@ every 30.minutes do
 end
 
 every 15.minutes do
-  rake 'tweet_delete_with_Post_model_latest'
+  rake 'twi_bot:delete_latest_post'
 end
 
 # Learn more: http://github.com/javan/whenever
