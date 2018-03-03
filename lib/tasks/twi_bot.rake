@@ -23,7 +23,8 @@ namespace :twi_bot do
       )
     else
       p "[error_log] [#{Time.zone.now}] エラーが発生しました。。。"
-
+      notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
+      notifier.ping p "[error_log] [#{Time.zone.now}] エラーが発生しました。。。"
       # Rake::Task.new('twi_bot:random_tweet', Rake.application).invoke
     end
   end
