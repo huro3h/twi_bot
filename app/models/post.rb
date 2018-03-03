@@ -3,21 +3,8 @@ require 'twitter'
 class Post < ApplicationRecord
   include TwitterClient
 
-  def delete_oldest_post
-    oldest_post_tweet_id = Post.where(is_deleted: false).last.publish_id
-
-    if self.was_deleted?(oldest_post_tweet_id)
-      # p "対象のツイートは既に削除されています → #{oldest_post_tweet_id}"
-    else
-      exec_delete(oldest_post_tweet_id)
-      # p "[delete_log] [#{Time.zone.now}] 削除TweetID:[#{oldest_post_tweet_id}]"
-    end
-    oldest_post_tweet = Post.find_by(publish_id: oldest_post_tweet_id)
-    oldest_post_tweet.update(is_deleted: true, deleted_at: Time.zone.now)
-  end
-
   def delete_latest_post
-    latest_post_tweet_id = Post.find_by(is_deleted: false).publish_id
+    latest_post_tweet_id = self.find_by(is_deleted: false).publish_id
 
     if self.was_deleted?(latest_post_tweet_id)
       p "対象のツイートは既に削除されています → #{latest_post_tweet_id}"
