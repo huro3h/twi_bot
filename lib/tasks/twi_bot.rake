@@ -29,6 +29,12 @@ namespace :twi_bot do
     end
   end
 
+  desc 'remove_duplicate_posts'
+  task remove_duplicate_posts: :environment do
+    post = Post.new
+    post.duplicate_exists?
+  end
+
   # bundle exec rake twi_bot:tweet_test
   desc 'tweet_test'
   task tweet_test: :environment do
