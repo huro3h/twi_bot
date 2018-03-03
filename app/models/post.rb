@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   include TwitterClient
 
   def delete_latest_post
-    latest_post_tweet_id = self.find_by(is_deleted: false).publish_id
+    latest_post_tweet_id = Post.find_by(is_deleted: false).publish_id
 
     if self.was_deleted?(latest_post_tweet_id)
       p "対象のツイートは既に削除されています → #{latest_post_tweet_id}"
