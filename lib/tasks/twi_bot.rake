@@ -22,7 +22,9 @@ namespace :twi_bot do
         created_at: Time.zone.now
       )
     else
-      Rake::Task.new('twi_bot:random_tweet', Rake.application).invoke
+      p "[error_log] [#{Time.zone.now}] エラーが発生しました。。。"
+
+      # Rake::Task.new('twi_bot:random_tweet', Rake.application).invoke
     end
   end
 
@@ -32,23 +34,6 @@ namespace :twi_bot do
     client = twitter_client
     tweet = "tweet_test!\rand_new_line_test.."
     update(client, tweet)
-  end
-
-  # bundle exec rake twi_bot:delete_test
-  # desc 'tweet_delete_test'
-  # task delete_test: :environment do
-  #   client = twitter_client
-  #   delete_id = ""
-  #   client.destroy_status(delete_id)
-  # end
-
-  # bundle exec rake twi_bot:delete_post
-  desc 'tweet_delete_with_Post_model'
-  task delete_post: :environment do
-    if Post.where(is_deleted: false).size > 25
-      post = Post.new
-      post.delete_oldest_post
-    end
   end
 
   # bundle exec rake twi_bot:delete_latest_post
