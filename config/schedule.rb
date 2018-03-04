@@ -32,4 +32,9 @@ every 15.minutes do
   rake 'twi_bot:delete_latest_post'
 end
 
+# 重複したPostモデルを削除
+every 1.hours, at: 12 do
+  rake 'twi_bot:remove_duplicate_posts'
+end
+
 # Learn more: http://github.com/javan/whenever
