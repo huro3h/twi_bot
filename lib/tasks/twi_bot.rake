@@ -32,7 +32,15 @@ namespace :twi_bot do
   desc 'remove_duplicate_posts'
   task remove_duplicate_posts: :environment do
     post = Post.new
-    post.duplicate_exists?
+    if post.duplicate_exists?
+      post.duplicate_exists?.each do |tweet|
+        duplicate_tweet = Post.find_by(publish_id: tweet)
+        duplicate_tweet.update(is_deleted: true, deleted_at: Time.zone.now)
+        puts "publish_id: #{tweet} が重複していた為削除しました。"
+        notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
+        notifier.ping p "[duplicate] [#{Time.zone.now}] publish_id: #{tweet} が重複していた為削除しました。"
+      end
+    end
   end
 
   # bundle exec rake twi_bot:tweet_test

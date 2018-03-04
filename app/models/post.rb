@@ -3,6 +3,11 @@ require 'twitter'
 class Post < ApplicationRecord
   include TwitterClient
 
+  def duplicate_exists?
+    posts = Post.where(is_deleted: false).pluck(:publish_id)
+    p posts.group_by{|i| i}.reject{|k,v| v.one?}.keys
+  end
+
   def delete_latest_post
     latest_post_tweet_id = Post.find_by(is_deleted: false).publish_id
 
