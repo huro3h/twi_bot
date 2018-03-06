@@ -1,4 +1,5 @@
 require 'twitter'
+require 'slack-notifier'
 
 namespace :twi_bot do
   # bundle exec rake twi_bot:random_tweet
