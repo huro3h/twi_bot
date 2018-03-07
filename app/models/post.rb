@@ -5,7 +5,7 @@ class Post < ApplicationRecord
 
   def duplicate_exists?
     posts = Post.where(is_deleted: false).pluck(:publish_id)
-    p posts.group_by{|i| i}.reject{|k,v| v.one?}.keys
+    p posts.group_by { |i| i }.reject { |k, v| v.one? }.keys
   end
 
   def delete_latest_post
@@ -17,6 +17,7 @@ class Post < ApplicationRecord
       exec_delete(latest_post_tweet_id)
       puts "[delete_log] [#{Time.zone.now}] 削除TweetID:[#{latest_post_tweet_id}]"
     end
+
     latest_post_tweet = Post.find_by(publish_id: latest_post_tweet_id)
     latest_post_tweet.update(is_deleted: true, deleted_at: Time.zone.now)
   end
