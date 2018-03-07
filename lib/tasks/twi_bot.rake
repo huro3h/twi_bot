@@ -40,6 +40,8 @@ namespace :twi_bot do
           duplicate_post.update(is_deleted: true, deleted_at: Time.zone.now)
         end
 
+        post.exec_delete(duplicate_post_id)
+
         puts "publish_id: #{duplicate_post_id} が重複していた為削除しました。"
         notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
         notifier.ping p "[duplicate] [#{Time.zone.now}] publish_id: #{duplicate_post_id} が重複していた為削除しました。"
