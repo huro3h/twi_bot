@@ -23,9 +23,9 @@ namespace :twi_bot do
         created_at: Time.zone.now
       )
     else
-      p "[error_log] [#{Time.zone.now}] エラーが発生しました。。。"
+      puts "[error_log] [#{Time.zone.now}] エラーが発生しました"
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
-      notifier.ping p "[error_log] [#{Time.zone.now}] エラーが発生しました。。。"
+      notifier.ping p "[error_log] [#{Time.zone.now}] エラーが発生しました"
       # Rake::Task.new('twi_bot:random_tweet', Rake.application).invoke
     end
   end
@@ -34,12 +34,15 @@ namespace :twi_bot do
   task remove_duplicate_posts: :environment do
     post = Post.new
     if post.duplicate_exists?
-      post.duplicate_exists?.each do |tweet|
-        duplicate_tweet = Post.find_by(publish_id: tweet)
-        duplicate_tweet.update(is_deleted: true, deleted_at: Time.zone.now)
-        puts "publish_id: #{tweet} が重複していた為削除しました。"
+      duplicate_post_ids = post.duplicate_exists?
+      duplicate_post_ids.each do |duplicate_post_id|
+        Post.where(publish_id: duplicate_post_id).each do |duplicate_post|
+          duplicate_post.update(is_deleted: true, deleted_at: Time.zone.now)
+        end
+
+        puts "publish_id: #{duplicate_post_id} が重複していた為削除しました。"
         notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
-        notifier.ping p "[duplicate] [#{Time.zone.now}] publish_id: #{tweet} が重複していた為削除しました。"
+        notifier.ping p "[duplicate] [#{Time.zone.now}] publish_id: #{duplicate_post_id} が重複していた為削除しました。"
       end
     end
   end
