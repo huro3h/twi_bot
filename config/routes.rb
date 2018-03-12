@@ -1,9 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root to: 'posts#index'
 
-  get 'tweets/index'
-  get 'tweets/new'
-  get 'tweets/show'
-  post 'tweets/edit'
-  post 'tweets/destroy'
+  resources :tweets, only: %i[index new show create edit destroy]
 end
