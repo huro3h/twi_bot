@@ -1,2 +1,14 @@
-<h1>Tweets#index</h1>
-<p>Find me in app/views/tweets/index.html.erb</p>
+<h4>Tweets#index</h4>
+<table>
+  <thead>
+  <tr><th>ID</th><th>CONTENT</th>
+  </thead>
+  <tbody>
+    <% @tweets.each do |t| %>
+    <tr>
+      <th><%= t.id %></th>
+      <td><%= t.content %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
