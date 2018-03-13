@@ -1,2 +1,11 @@
-<h1>Tweets#new</h1>
-<p>Find me in app/views/tweets/new.html.erb</p>
+<% provide(:title, 'Twibot | tweet') %>
+<h4>Create Tweet</h4>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with model: @tweet, url: tweets_path, method: :post, local: true do |f| %>
+      <%= f.text_field :content %>
+      <%= f.submit '送信', class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

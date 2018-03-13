@@ -16,6 +16,8 @@ class TweetsController < ApplicationController
   end
 
   def create
+    @tweet = Tweet.new(tweet_params)
+    redirect_to @tweet, notice: '作成しました' if @tweet.save
   end
 
   def destroy
