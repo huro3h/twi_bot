@@ -1,13 +1,16 @@
 <h4>Tweets#index</h4>
 <table class="table table-sm">
   <thead>
-  <tr><th>ID</th><th>CONTENT</th>
+    <tr>
+      <th>ID</th>
+      <th>CONTENT</th>
+    </tr>
   </thead>
   <tbody>
     <% @tweets.each do |t| %>
     <tr>
-      <th><%= t.id %></th>
-      <td><%= t.content %></td>
+      <th class="id_lists"><%= t.id %></th>
+      <td class="contents_list"><%= t.content %></td>
     </tr>
   <% end %>
   </tbody>
