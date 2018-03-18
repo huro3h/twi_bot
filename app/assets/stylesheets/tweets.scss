@@ -3,11 +3,17 @@ body.tweets {
     max-width: 1200px;
   }
 
-  // th.id_lists {
-  //   font-size: 16px;
-  // }
-  // td.contents_list {
-  //   font-size: 20px;
-  // }
+  th.id_lists {
+    font-size: 12px;
+  }
+  td.contents_list {
+    font-size: 12px;
+  }
+
 }
 
+body.tweets.new {
+  .textbox {
+    width: 100%;
+  }
+}
