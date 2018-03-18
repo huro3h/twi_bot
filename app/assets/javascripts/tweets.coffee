@@ -1,3 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+# $(function(){
+#   $(".textbox").bind("change keyup",function(){
+#   var count = $(this).val().length;
+#     $("#num").text(count);
+#   });
+# });
+
+$ ->
+  $('.textbox').bind 'change keyup', ->
+    count = $(this).val().length
+    $('#num').text count
+    return
+  return
