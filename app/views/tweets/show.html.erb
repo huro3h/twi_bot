@@ -1,4 +1,8 @@
 <h3>Tweets#show</h3>
 
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
 <p>id: <%= @tweet.id %></p>
 <p>content: <%= @tweet.content %></p>

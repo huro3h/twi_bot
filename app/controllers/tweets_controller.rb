@@ -17,7 +17,11 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.new(tweet_params)
-    redirect_to @tweet, notice: '作成しました' if @tweet.save
+    if @tweet.save
+      redirect_to @tweet, notice: 'tweetを作成しました'
+    else
+      render new, notice: '140文字以内で入力して下さい'
+    end
   end
 
   def destroy
