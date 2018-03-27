@@ -1,16 +1,23 @@
+
 <table class="table table-sm table-striped">
+  <%= paginate @tweets %>
   <thead>
     <tr>
       <th>ID</th>
       <th>CONTENT</th>
+      <th>EDIT</th>
     </tr>
   </thead>
   <tbody>
-    <% @tweets.each do |t| %>
+    <% @tweets.find_each do |tweet| %>
     <tr>
-      <th class="id_lists"><%= t.id %></th>
-      <td class="contents_list"><%= t.content %></td>
+      <th class="id_lists"><%= tweet.id %></th>
+      <td class="contents_list"><%= tweet.content %></td>
+      <td><%= link_to 'edit', edit_tweet_path(tweet) %></td>
+      <td><%= link_to 'destroy', tweet, method: :delete, data: {confirm: "本当に削除しますか?"} %></td>
+
     </tr>
   <% end %>
   </tbody>
 </table>
+<%= paginate @tweets %>
