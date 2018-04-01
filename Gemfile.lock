@@ -48,7 +48,7 @@ GEM
     bindex (0.5.0)
     buftok (0.2.0)
     builder (3.2.3)
-    byebug (10.0.1)
+    byebug (10.0.2)
     capistrano (3.10.1)
       airbrussh (>= 1.0.0)
       i18n
