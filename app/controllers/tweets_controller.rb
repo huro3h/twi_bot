@@ -1,7 +1,8 @@
 class TweetsController < ApplicationController
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tweets = Tweet.page(params[:page]).per(70).order(id: :desc)
+    @tweets = Tweet.page(params[:page]).order(id: :desc)
   end
 
   def new
@@ -9,7 +10,6 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
   end
 
   def edit
@@ -20,16 +20,25 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to @tweet, notice: 'tweetを作成しました'
     else
-      render new, notice: '140文字以内で入力して下さい'
+      render :new, notice: 'エラーが発生しました'
     end
   end
 
+  def update
+  end
+
   def destroy
+    @tweet.destroy
+    redirect_to root_url
   end
 
   private
 
   def tweet_params
     params.fetch(:tweet, {}).permit(:content)
+  end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
   end
 end
