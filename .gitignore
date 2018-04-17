@@ -75,3 +75,4 @@ Temporary Items
 # database.yml
 spec/examples.txt
 public/assets
+.circleci
