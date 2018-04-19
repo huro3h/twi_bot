@@ -1,8 +1,8 @@
 ruby_image: &ruby_image
   circleci/ruby:2.5.1-node-browsers
 
-# bundle_cache_key: &bundle_cache_key
-#   bundle-{{ checksum "Gemfile.lock" }}
+bundle_cache_key: &bundle_cache_key
+  bundle-{{ checksum "Gemfile.lock" }}
 
 version: 2
 
@@ -11,36 +11,30 @@ jobs:
     docker:
       - image: *ruby_image
         environment:
-          RAILS_ENV: test
+          RAILS_ENV: 'test'
+          RACK_ENV: 'test'
           DB_HOST: 127.0.0.1
-          # DB_USERNAME: 'root'
-          # DB_PASSWORD: ''
+          DB_NAME: 'circle_ruby_test'
+          DB_USERNAME: 'root'
       - image: circleci/mysql:5.7.21
         environment:
-          USER: root
-          # USER: twi_bot
-          # DB: twi_bot_test
-          # PASSWORD: ""
+          MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          # MYSQL_ROOT_HOST: '%'
-    parallelism: 2
+          MYSQL_ROOT_HOST: '%'
+    parallelism: 1
     working_directory: ~/myProjects/twi_bot
     steps:
       - checkout
       - type: cache-restore
         name: Restore bundle cache
-        key: bundle-{{ checksum "Gemfile.lock" }}
-
-      # - restore_cache:
-      #     key: *bundle_cache_key
-      # - run: apt-get update -qq && apt-get install -y build-essential nodejs
+        key: *bundle_cache_key
 
       - run: bundle install -j4 --retry=3 --path vendor/bundle
 
       # Cache Dependencies
       - type: cache-save
         name: Store bundle cache
-        key: bundle-{{ checksum "Gemfile.lock" }}
+        key: *bundle_cache_key
         paths: vendor/bundle
 
       # Wait for DB
@@ -48,13 +42,13 @@ jobs:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
 
-      # Setup the environment
-      # - run: cp .env .env
-
-      - run: bin/rails db:schema:load --trace
+      # - run: env
 
       # Setup the database
-      - run: bundle exec rake db:setup
+      - run: RAILS_ENV=test bundle exec rake db:create
+
+      # Setup the environment
+      - run: bin/rails db:schema:load --trace
 
       # Run the tests
       - run: bundle exec rspec spec/

@@ -12,8 +12,8 @@ development:
 
 test:
   <<: *default
-  database: <%= ENV['TWI_BOT_DB_NAME_TEST'] %>
-  username: <%= ENV['TWI_BOT_USER_NAME_TEST'] %>
+  database: <%= ENV['DB_NAME'] || ENV['TWI_BOT_DB_NAME_TEST'] %>
+  username: <%= ENV['DB_USERNAME'] || ENV['TWI_BOT_USER_NAME_TEST'] %>
 
 production:
   <<: *default
