@@ -1,0 +1,6 @@
+<div class='actions col-sm-6'>
+  <%= form_with(model: event, local: true) do |f| %>
+  <%= f.text_area :content, class: 'text_box_size' %><br>
+  <%= f.submit '更新', class: 'btn btn-primary' %>
+  <% end %>
+</div>
