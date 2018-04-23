@@ -1,6 +1,7 @@
 
 <table class="table table-sm table-striped">
   <%= paginate @tweets %>
+  <div><%= "TOTAL:  #{Tweet.total_number_of_tweet}" %></div>
   <thead>
     <tr>
       <th>ID</th>

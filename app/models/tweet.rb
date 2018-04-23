@@ -8,4 +8,8 @@ class Tweet < ApplicationRecord
   def new
     client
   end
+
+  def self.total_number_of_tweet
+    Tweet.count
+  end
 end
