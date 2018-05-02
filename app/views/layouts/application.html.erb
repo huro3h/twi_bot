@@ -9,20 +9,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render partial: "layouts/css_cdn" %>
   </head>
-
   <body class="<%= controller_name %> <%= action_name %>">
-
-
-  <div class="container">
-    <%= render partial: "layouts/header" %>
-    <%= yield %>
-
-    <footer class="footer">
-      <p>Twibot<i class="far fa-smile"></i>2018</p>
-    </footer>
-
-  </div>
-
-
+    <div class="container">
+      <%= render partial: "layouts/header" %>
+      <%= yield %>
+      <footer class="footer">
+        <p>Twibot<i class="far fa-smile"></i>2018</p>
+      </footer>
+    </div>
   </body>
 </html>
