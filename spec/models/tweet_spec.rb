@@ -27,4 +27,17 @@ describe Tweet do
       expect(tweet_just140.save).to eq(true)
     end
   end
+
+  describe 'scope' do
+    describe 'search' do
+      let!(:tweet_apple) { Tweet.create(content: 'りんご') }
+      let!(:tweet_green_apple) { Tweet.create(content: '青りんご') }
+      let!(:tweet_orange) { Tweet.create(content: 'みかん') }
+
+      it '検索文字列がcontentに含まれていたら、正しい検索結果を返すこと' do
+        expect(Tweet.search('りんご').count).to eq 2
+        expect(Tweet.search('みかん').count).to eq 1
+      end
+    end
+  end
 end

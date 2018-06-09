@@ -5,6 +5,10 @@ class Tweet < ApplicationRecord
 
   validates :content, uniqueness: true, length: { in: 1..140 }
 
+  scope :search, ->(str) {
+    where('content like ?', "%#{sanitize_sql_like(str)}%")
+  }
+
   def new
     client
   end
