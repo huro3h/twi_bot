@@ -62,6 +62,7 @@ group :test do
 end
 
 gem 'activerecord-import'
+gem "administrate"
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'pry-byebug'
