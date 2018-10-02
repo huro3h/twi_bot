@@ -62,11 +62,12 @@ group :test do
 end
 
 gem 'activerecord-import'
-gem "administrate"
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'pry-byebug'
 gem 'pry-rails'
 gem 'slack-notifier'
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem 'twitter'
 gem 'whenever', require: false
