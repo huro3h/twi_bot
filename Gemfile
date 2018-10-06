@@ -10,7 +10,7 @@ gem 'rails', '5.2.1'
 
 gem 'bootsnap'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.3.18', '< 0.5'
+gem 'mysql2', '~> 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -59,6 +59,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.7'
+  gem 'simplecov', require: false
 end
 
 gem 'activerecord-import'
