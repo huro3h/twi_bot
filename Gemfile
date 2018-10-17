@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.1'
+gem 'rails', '~> 5.2'
 
 gem 'bootsnap'
 # Use mysql as the database for Active Record
@@ -14,7 +14,7 @@ gem 'mysql2', '~> 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -68,7 +68,7 @@ gem 'kaminari'
 gem 'pry-byebug'
 gem 'pry-rails'
 gem 'slack-notifier'
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+# gem 'sunspot_rails'
+# gem 'sunspot_solr'
 gem 'twitter'
 gem 'whenever', require: false
