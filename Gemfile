@@ -35,9 +35,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'listen', '>= 3.0.5', '< 3.2'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -68,7 +68,5 @@ gem 'kaminari'
 gem 'pry-byebug'
 gem 'pry-rails'
 gem 'slack-notifier'
-# gem 'sunspot_rails'
-# gem 'sunspot_solr'
 gem 'twitter'
 gem 'whenever', require: false
