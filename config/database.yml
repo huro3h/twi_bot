@@ -21,3 +21,4 @@ production:
   username: <%= ENV['TWI_BOT_USER_NAME'] %>
   password: <%= ENV['TWI_BOT_DB_PASSWORD'] %>
   host: <%= ENV["DB_HOST"] %>
+  port: 3306
