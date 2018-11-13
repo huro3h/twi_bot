@@ -3,17 +3,18 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  # host: 127.0.0.1
 
 development:
   <<: *default
   database: <%= ENV['TWI_BOT_DB_NAME_DEV'] %>
   username: <%= ENV['TWI_BOT_USER_NAME_DEV'] %>
+  host: 127.0.0.1
 
 test:
   <<: *default
   database: <%= ENV['DB_NAME'] || ENV['TWI_BOT_DB_NAME_TEST'] %>
   username: <%= ENV['DB_USERNAME'] || ENV['TWI_BOT_USER_NAME_TEST'] %>
+  host: 127.0.0.1
 
 production:
   <<: *default
