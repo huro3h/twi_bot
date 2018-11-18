@@ -23,7 +23,6 @@ namespace :twi_bot do
         created_at: Time.zone.now
       )
     else
-      puts "[error_log] [#{Time.zone.now}] エラーが発生しました"
       notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
       notifier.ping p "[error_log] [#{Time.zone.now}] エラーが発生しました"
       # Rake::Task.new('twi_bot:random_tweet', Rake.application).invoke
@@ -41,8 +40,6 @@ namespace :twi_bot do
         end
 
         post.exec_delete(duplicate_post_id)
-
-        puts "publish_id: #{duplicate_post_id} が重複していた為削除しました。"
         notifier = Slack::Notifier.new ENV['SLACK_WEBHOOK_URL']
         notifier.ping p "[duplicate] [#{Time.zone.now}] publish_id: #{duplicate_post_id} が重複していた為削除しました。"
       end
@@ -60,7 +57,7 @@ namespace :twi_bot do
   # bundle exec rake twi_bot:delete_latest_post
   desc 'tweet_delete_with_Post_model_latest'
   task delete_latest_post: :environment do
-    if Post.where(is_deleted: false).size > 25
+    if Post.where(is_deleted: false).size > 15
       post = Post.new
       post.delete_latest_post
     end
