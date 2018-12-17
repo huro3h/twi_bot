@@ -21,4 +21,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* Tweet削除bot... 
+* Tweet削除bot..
