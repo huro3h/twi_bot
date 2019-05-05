@@ -10,6 +10,8 @@ development:
   database: <%= ENV['TWI_BOT_DB_NAME_DEV'] %>
   username: <%= ENV['TWI_BOT_USER_NAME_DEV'] %>
   host: 127.0.0.1
+  port: 3399
+  password: root
 
 test:
   <<: *default
