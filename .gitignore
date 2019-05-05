@@ -75,3 +75,9 @@ Temporary Items
 # database.yml
 spec/examples.txt
 public/assets
+
+# Rubymine config file
+.idea
+
+# Docker files
+docker
