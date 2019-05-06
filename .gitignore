@@ -78,6 +78,3 @@ public/assets
 
 # Rubymine config file
 .idea
-
-# Docker files
-docker
