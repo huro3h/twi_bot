@@ -1,5 +1,5 @@
 ruby_image: &ruby_image
-  circleci/ruby:2.6.3-stretch
+  circleci/ruby:2.6.3-node-browsers
 
 bundle_cache_key: &bundle_cache_key
   bundle-{{ checksum "Gemfile.lock" }}
