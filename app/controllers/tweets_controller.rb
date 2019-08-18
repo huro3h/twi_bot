@@ -26,7 +26,8 @@ class TweetsController < ApplicationController
 
   def update
     if @tweet.update(tweet_params)
-      redirect_to @tweet, notice: "#{@tweet.id}を更新しました"
+      flash[:notice] = "#{@tweet.id} を更新しました"
+      redirect_to @tweet
     else
       render :edit
     end

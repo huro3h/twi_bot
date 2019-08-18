@@ -4,7 +4,7 @@
     <%= render partial: "layouts/gtag" %>
     <title><%= yield(:title).presence || "Twi_bot" %></title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= render partial: "layouts/js_cdn" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render partial: "layouts/css_cdn" %>
@@ -12,6 +12,10 @@
   <body class="<%= controller_name %> <%= action_name %>">
     <div class="container">
       <%= render partial: "layouts/header" %>
+      <!-- flash -->
+      <% flash.each do |key, value| %>
+        <div class="alert <%= flash_with_bootstrap(key) %>"><%= value %></div>
+      <% end %>
       <%= yield %>
       <footer class="footer">
         <p>Twibot<i class="far fa-smile"></i>2018</p>
