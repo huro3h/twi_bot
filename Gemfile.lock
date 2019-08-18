@@ -323,7 +323,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma (~> 3.7)
-  rails (~> 5.2)
+  rails
   rspec-rails (~> 3.7)
   sassc-rails
   simplecov
