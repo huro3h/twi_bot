@@ -63,7 +63,6 @@ group :test do
   gem 'simplecov', require: false
 end
 
-gem 'activerecord-import'
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'pry-byebug'
