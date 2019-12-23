@@ -10,7 +10,7 @@ gem 'rails'
 
 gem 'bootsnap'
 # Use mysql as the database for Active Record
-gem 'mysql2', '~> 0.5'
+gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
