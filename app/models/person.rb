@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# sandbox_code
+
 class Person
   include ActiveModel::AttributeMethods
 
