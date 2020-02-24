@@ -1,5 +1,7 @@
-# README
-
+## README  
+~Auto tweet & Remove past tweets~  
+ここは何でも気軽に試す砂場と化したappになりました。  
+  
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
