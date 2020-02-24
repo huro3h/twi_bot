@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  t.string "publish_id"
+  t.string "content"
+  t.boolean "is_deleted", default: false, null: false
+  t.datetime "deleted_at"
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+end
+
+create_table "tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  t.string "content"
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index ["content"], name: "index_tweets_on_content", unique: true
+end
