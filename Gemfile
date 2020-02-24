@@ -67,6 +67,7 @@ gem 'dotenv-rails'
 gem 'kaminari'
 gem 'pry-byebug'
 gem 'pry-rails'
+gem 'ridgepole'
 gem 'slack-notifier'
 gem 'twitter'
 gem 'whenever', require: false
