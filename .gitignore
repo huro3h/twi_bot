@@ -78,3 +78,5 @@ public/assets
 
 # Rubymine config file
 .idea
+
+/config/master.key
