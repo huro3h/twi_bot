@@ -1,17 +1,25 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+# encoding: utf-8
+# 上のコメント行をつけないと、下の定義の中で日本語が使えない
+
+create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
   t.string "publish_id"
   t.string "content"
   t.boolean "is_deleted", default: false, null: false
   t.datetime "deleted_at"
-  t.datetime "created_at", null: false
-  t.datetime "updated_at", null: false
+  t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
 end
 
-create_table "tweets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+create_table "tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
   t.string "content"
-  t.datetime "created_at", null: false
-  t.datetime "updated_at", null: false
+  t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
   t.index ["content"], name: "index_tweets_on_content", unique: true
+end
+
+create_table "musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  t.string "title"
+  t.datetime "listened_at"
+  t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
 end
