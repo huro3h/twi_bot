@@ -11,7 +11,7 @@ class Computer
   # setter
   def name=(value)
     name_will_change! unless value == @name
-    @name = val
+    @name = value
   end
 
   def save
