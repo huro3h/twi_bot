@@ -1,7 +1,7 @@
 class Computer
   include ActiveModel::Dirty
 
-  difine_attribute_methods :name
+  define_attribute_methods :name
 
   # getter
   def name
